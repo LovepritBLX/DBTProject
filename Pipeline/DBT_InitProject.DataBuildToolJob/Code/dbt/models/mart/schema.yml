@@ -1,0 +1,233 @@
+name: Hello World
+description: This is a Hello World YAML file
+data:
+  - hello: world
+
+# version: 2
+
+# models:
+  
+#   - name: DimDivision
+#     description: "Dimension SCD des Division."
+#     tests:
+#       - accepted_values:
+#           column_name: CurrentFlag
+#           values: ['Y','N']
+#       - unique_combo:
+#           combination_of_columns: ['DimDivisionScdId', 'EffDate']
+#           ignore_nulls: true
+
+#     columns:
+#       - name: DimDivisionId
+#         description: "Id unique de la dimension"
+#         tests:
+#           - not_null
+
+#       - name: DimDivisionScdId
+#         description: "Durable Key"
+#         tests:
+#           - not_null
+
+#       - name: BusinessKey
+#         description: "Business Key of the dimension"
+#         tests:
+#           - not_null
+
+#       - name: DivisionCode
+#         description: "Business Key"
+#         tests:
+#           - not_null
+
+#       - name: Name
+#         description: "Nom de la division"
+
+#       - name: Calendar
+#         description: ""
+
+#       - name: Country
+#         description: ""
+
+#       - name: Region
+#         description: ""
+
+#       - name: Language
+#         description: ""
+
+#       - name: InsertedDate
+#         description: ""
+
+#       - name: ModifiedDate
+#         description: ""
+
+#       - name: EffDate
+#         description: ""
+#         tests:
+#           - not_null
+
+#       - name: EndDate
+#         description: ""
+#         tests:
+#           - not_null
+
+#       - name: CurrentFlag
+#         description: ""
+#         tests:
+#           - not_null
+
+
+#   - name: DimPlant
+#     description: "Dimension SCD des Plant."
+#     tests:
+#       - not_null:
+#           column_name: DimPlantScdId
+#       - not_null:
+#           column_name: EffDate
+#       - accepted_values:
+#           column_name: CurrentFlag
+#           values: ['Y','N']
+#       - unique_combo:
+#           combination_of_columns: ['DimPlantScdId', 'EffDate']
+#           ignore_nulls: true
+
+#     columns:
+#       - name: DimPlantId
+#         description: "Id unique de la dimension (hash)."
+#         tests:
+#           - not_null
+
+#       - name: ScdId
+#         description: "Durable Key - hash de la Business Key"
+
+#       - name: BusinessKey
+#         description: "Business Key"
+
+# # Fact ###################################
+# ###########################################
+
+#   - name: FactProductionByDivision
+#     description: "Fait de production vendue et livrée, agrégée par division et par mois."
+#     tests:
+#       # Unicité métier: (OrderId, LineNumber) doivent être uniques côté fact
+#       - unique_combo:
+#           combination_of_columns: ['DimDivisionId', 'DimMonthId']
+#           ignore_nulls: true
+
+#     columns:
+
+#       - name: DimDivisionId
+#         description: "Clé étrangère vers la dimension DimDivision (record actif)."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimDivision')
+#               field: DimDivisionId
+
+#       - name: DimMonthId
+#         description: "Clé étrangère vers la dimension DimMonth."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimMonth')
+#               field: DimMonthId
+
+#       - name: ProductionSoldKWh
+#         description: "Volume de production vendue (KWh) pour la division et le mois."
+
+#       - name: ProductionMeteredKWh
+#         description: "Volume de production livrée (mesurée, KWh) pour la division et le mois."
+
+#       - name: ProductionSoldKWh_YTD
+#         description: "Volume de production vendue (KWh) pour la division et le mois."
+
+#       - name: ProductionMeteredKWh_YTD
+#         description: "Volume de production livrée (mesurée, KWh) pour la division et le mois."
+
+#       - name: DiffProductionKWh
+#         description: "Diff de Volume de production livrée (mesurée, KWh) pour la division et le mois."
+
+
+#   - name: FactProductionByPlant
+#     description: >
+#       Table de faits Production (grain : Plant × Division × Month).
+#       Intègre les clés AS IS (DimXId) et AS WAS (DimXScdId) des dimensions
+#       DimPlant, DimDivision et DimMonth.
+#       Incrémental basé sur ModifiedDate de la couche Int.
+
+#     columns:
+
+#       # --- Clés DimPlant ---
+#       - name: DimPlantId
+#         description: "Clé AS IS de la dimension Plant (CurrentFlag = 'Y')."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimPlant')
+#               field: DimPlantId
+
+#       - name: DimPlantScdId
+#         description: "Clé AS WAS (surrogate SCD2) de la dimension Plant."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimPlant')
+#               field: DimPlantScdId
+
+#       # --- Clés DimDivision ---
+#       - name: DimDivisionId
+#         description: "Clé AS IS de la dimension Division (CurrentFlag = 'Y')."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimDivision')
+#               field: DimDivisionId
+
+#       - name: DimDivisionScdId
+#         description: "Clé AS WAS (surrogate SCD2) de la dimension Division."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimDivision')
+#               field: DimDivisionScdId
+
+#       # --- Clé DimMonth ---
+#       - name: DimMonthId
+#         description: "Clé de la dimension temps (mois)."
+#         tests:
+#           - not_null
+#           - relationships:
+#               to: ref('DimMonth')
+#               field: DimMonthId
+
+#       # --- Mesures ---
+#       - name: ProductionKWh
+#         description: "Production (kWh) agrégée pour la combinaison Plant × Division × Month."
+#         tests:
+#           - not_null
+
+#       # --- Dates techniques ---
+#       - name: InsertedDate
+#         description: "Dernière date d'insertion en provenance de la couche Int."
+#         tests:
+#           - not_null
+
+#       - name: ModifiedDate
+#         description: "Dernière date de modification en provenance de la couche Int."
+#         tests:
+#           - not_null
+
+#     tests:
+
+#       # Unicité du grain de la table de fait
+#       - unique_combo:
+#           combination_of_columns:
+#             - DimPlantId
+#             - DimPlantScdId
+#             - DimDivisionId
+#             - DimDivisionScdId
+#             - DimMonthId
+
+#       # Cohérence du temps
+#       #- dbt_utils.expression_is_true:
+#       #    expression: "LastInsertedDate <= LastModifiedDate"
+#       #    config:
+#       #      severity: warn

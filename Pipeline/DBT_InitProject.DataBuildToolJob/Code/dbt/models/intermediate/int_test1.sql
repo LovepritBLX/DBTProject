@@ -1,0 +1,75 @@
+SELECT 'Hello, World!' AS greeting;
+
+-- WITH base AS (
+--     SELECT 
+--         p.Year,
+--         p.Month,
+--         p.FirstDayOfMonth,
+--         p.LastDayOfMonth,
+--         a.PlantCode,
+--         p.InsertedDate,
+--         p.ModifiedDate,
+--         p.ProductionKWh
+--     FROM {{ ref('Stg_EnergyProductionByAsset') }} p
+--     LEFT JOIN {{ ref('Stg_Asset') }} a
+--         ON p.AssetCode = a.AssetCode
+-- ),
+
+-- -- Agrégation par plant × mois **sans YTD**
+-- monthly AS (
+--     SELECT
+--         Year,
+--         Month,
+--         FirstDayOfMonth,
+--         LastDayOfMonth,
+--         PlantCode,
+--         SUM(ProductionKWh) AS ProductionKWh,
+--         MAX(InsertedDate) AS InsertedDate,
+--         MAX(ModifiedDate) AS ModifiedDate
+--     FROM base
+--     GROUP BY
+--         Year, Month, FirstDayOfMonth, LastDayOfMonth, PlantCode
+-- ),
+
+-- -- YTD par plant × année (fenêtre analytique)
+-- monthly_ytd AS (
+--     SELECT
+--         m.*,
+--         SUM(m.ProductionKWh) OVER (
+--             PARTITION BY PlantCode, Year
+--             ORDER BY Month
+--             ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+--         ) AS ProductionKWh_YTD
+--     FROM monthly m
+-- ),
+
+-- Plant AS (
+--     SELECT 
+--         BusinessKey,
+--         DivisionBilled,
+--         LongViewEntity
+--     FROM {{ ref('Stg_Plant') }}
+-- ),
+
+-- -- Agrégation finale par Division × Mois (la seule agrégation finale)
+-- final AS (
+--     SELECT 
+--         (m.Year * 100 + m.Month) AS MonthId,
+--         m.FirstDayOfMonth,
+--         m.LastDayOfMonth,
+--         CAST(pl.DivisionBilled AS varchar(30)) AS DivisionCode,
+--         SUM(m.ProductionKWh) AS ProductionKWh,
+--         SUM(m.ProductionKWh_YTD) AS ProductionKWh_YTD,
+--         MAX(m.InsertedDate) AS InsertedDate,
+--         MAX(m.ModifiedDate) AS ModifiedDate
+--     FROM monthly_ytd m
+--     LEFT JOIN Plant pl
+--         ON m.PlantCode = pl.BusinessKey
+--     GROUP BY
+--         (m.Year * 100 + m.Month),
+--         m.FirstDayOfMonth,
+--         m.LastDayOfMonth,
+--         pl.DivisionBilled
+-- )
+
+-- SELECT * FROM final;
