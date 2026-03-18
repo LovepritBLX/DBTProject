@@ -1,0 +1,8 @@
+{
+  "command": {
+    "operation": "build",
+    "arguments": {
+      "threads": 4
+    }
+  }
+}
