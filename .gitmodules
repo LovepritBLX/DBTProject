@@ -1,0 +1,3 @@
+[submodule "Pipeline/shared_dbt"]
+	path = Pipeline/shared_dbt
+	url = https://github.com/Boralex-Inc/blx.fabric.dbt.git
