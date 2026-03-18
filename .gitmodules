@@ -1,3 +1,6 @@
 [submodule "Pipeline/shared_dbt"]
 	path = Pipeline/shared_dbt
 	url = https://github.com/Boralex-Inc/blx.fabric.dbt.git
+[submodule "Pipeline/dbtitem1.DataBuildToolJob/shared_dbt"]
+	path = Pipeline/dbtitem1.DataBuildToolJob/shared_dbt
+	url = https://github.com/Boralex-Inc/blx.fabric.dbt.git
