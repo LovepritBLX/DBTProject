@@ -13,4 +13,7 @@ test-paths: ["tests"]
 docs-paths: ["docs"]
 asset-paths: ["assets"]
 
-packages-install-path: "dbt_packages"
+packages:
+  - git: "https://github.com/Boralex-Inc/blx.fabric.dbt.git"
+    subdirectory: "Code/dbt"
+    revision: "main"
