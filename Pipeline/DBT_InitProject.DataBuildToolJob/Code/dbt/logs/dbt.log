@@ -24,3 +24,54 @@
 [0m16:27:03.538987 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001595007BBD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015951470160>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015950073C50>]}
 [0m16:27:03.539280 [debug] [MainThread]: Flushing usage events
 [0m16:27:04.043456 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:12:24.580630 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D9E9D0830>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D9FAFFED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D9FAFFC50>]}
+
+
+============================== 01:12:24.585041 | 8734a160-e09e-45a3-a3e6-5b31f88bbaf2 ==============================
+[0m01:12:24.585041 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:12:24.585559 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\loveprit.sidhu\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt ', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'c:\\Projects\\DBTProject\\Pipeline\\DBT_InitProject.DataBuildToolJob\\Code\\dbt\\logs'}
+[0m01:12:24.695082 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '8734a160-e09e-45a3-a3e6-5b31f88bbaf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D9EE255B0>]}
+[0m01:12:24.716022 [debug] [MainThread]: Set downloads directory='C:\Users\LOVEPR~1.SID\AppData\Local\Temp\dbt-downloads-21uowxkr'
+[0m01:12:24.716651 [debug] [MainThread]: Subdirectory specified: Code/dbt, using sparse checkout.
+[0m01:12:24.717018 [debug] [MainThread]: Executing "git --version"
+[0m01:12:24.765167 [debug] [MainThread]: STDOUT: "b'git version 2.53.0.windows.2\n'"
+[0m01:12:24.765497 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:24.765920 [debug] [MainThread]: Executing "git clone --depth 1 --filter=blob:none --sparse https://github.com/Boralex-Inc/blx.fabric.dbt.git 84e83209b0ef9147c125c3f4b7fd2377"
+[0m01:12:27.556427 [debug] [MainThread]: STDOUT: "b''"
+[0m01:12:27.556805 [debug] [MainThread]: STDERR: "b"Cloning into '84e83209b0ef9147c125c3f4b7fd2377'...\nUpdating files: 100% (1/1)\rUpdating files: 100% (1/1), done.\n""
+[0m01:12:27.557188 [debug] [MainThread]: Executing "git sparse-checkout set Code/dbt"
+[0m01:12:27.622016 [debug] [MainThread]: STDOUT: "b''"
+[0m01:12:27.622341 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:27.622744 [debug] [MainThread]: Pulling new dependency 84e83209b0ef9147c125c3f4b7fd2377.
+[0m01:12:27.623052 [debug] [MainThread]: Executing "git rev-parse HEAD"
+[0m01:12:27.663184 [debug] [MainThread]: STDOUT: "b'7ec76ded265bc9302b9830a01e211cad4e085e40\n'"
+[0m01:12:27.663513 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:27.663820 [debug] [MainThread]: Checking out revision main.
+[0m01:12:27.664052 [debug] [MainThread]: Executing "git remote set-branches origin main"
+[0m01:12:27.718115 [debug] [MainThread]: STDOUT: "b''"
+[0m01:12:27.718462 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:27.718900 [debug] [MainThread]: Executing "git fetch origin --depth 1 --tags main"
+[0m01:12:28.976705 [debug] [MainThread]: STDOUT: "b''"
+[0m01:12:28.977077 [debug] [MainThread]: STDERR: "b'From https://github.com/Boralex-Inc/blx.fabric.dbt\n * branch            main       -> FETCH_HEAD\n'"
+[0m01:12:28.977443 [debug] [MainThread]: Executing "git tag --list"
+[0m01:12:29.018597 [debug] [MainThread]: STDOUT: "b''"
+[0m01:12:29.018988 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:29.019536 [debug] [MainThread]: Executing "git reset --hard origin/main"
+[0m01:12:29.070616 [debug] [MainThread]: STDOUT: "b'HEAD is now at 7ec76de update dbt_project yaml\n'"
+[0m01:12:29.070941 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:29.071250 [debug] [MainThread]: Executing "git rev-parse HEAD"
+[0m01:12:29.110939 [debug] [MainThread]: STDOUT: "b'7ec76ded265bc9302b9830a01e211cad4e085e40\n'"
+[0m01:12:29.111258 [debug] [MainThread]: STDERR: "b''"
+[0m01:12:29.111563 [debug] [MainThread]: Checked out at 7ec76de.
+[0m01:12:29.111783 [warn ] [MainThread]: [33mWARNING: The git package "https://github.com/Boralex-Inc/blx.fabric.dbt.git" 
+	is pinned to the "main" branch.
+	This can introduce breaking changes into your project without warning!
+
+See https://docs.getdbt.com/docs/package-management#section-specifying-package-versions[0m
+[0m01:12:29.112081 [debug] [MainThread]: Executing "git rev-parse HEAD"
+[0m01:12:29.113658 [error] [MainThread]: Encountered an error:
+Unable to cd: path does not exist, user does not have permissions, or not a directory: "C:\Users\LOVEPR~1.SID\AppData\Local\Temp\dbt-downloads-21uowxkr\84e83209b0ef9147c125c3f4b7fd2377\Code/dbt"
+[0m01:12:29.114323 [debug] [MainThread]: Command `cli deps` failed at 01:12:29.114221 after 4.69 seconds
+[0m01:12:29.114603 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023DA0D985A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023DA0D9ABE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023DA0D92B50>]}
+[0m01:12:29.114875 [debug] [MainThread]: Flushing usage events
+[0m01:12:29.483616 [debug] [MainThread]: An error was encountered while trying to flush usage events
