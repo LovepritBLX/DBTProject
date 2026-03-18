@@ -1,19 +1,20 @@
-name: 'blx_fabric_dbt'
+name: 'dbtproject'
 version: '1.0.0'
 config-version: 2
 
 profile: 'default'
 
-model-paths: ["models"]
+model-paths:
+  - models
+  - shared_dbt/Code/dbt/models
+
+macro-paths:
+  - macros
+  - shared_dbt/Code/dbt/macros
+
 seed-paths: ["seeds"]
 snapshot-paths: ["snapshots"]
 analysis-paths: ["analyses"]
-macro-paths: ["macros"]
 test-paths: ["tests"]
 docs-paths: ["docs"]
 asset-paths: ["assets"]
-
-packages:
-  - git: "https://github.com/Boralex-Inc/blx.fabric.dbt.git"
-    subdirectory: "Code/dbt"
-    revision: "main"
