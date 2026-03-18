@@ -1,0 +1,4 @@
+packages:
+  - git: "https://github.com/Boralex-Inc/blx.fabric.dbt.git"
+    revision: "main"
+    subdirectory: "Code/dbt" 
